@@ -113,11 +113,13 @@ document.getElementById('submitBtn').onclick = async () => {
   btn.disabled = true; status.textContent = "Отправка..."; status.className = "";
 
   try{
-    await fetch(ENDPOINT, {
-      method: "POST",
-      mode: "no-cors",
-      body: JSON.stringify(payload),
-      headers: { "Content-Type": "text/plain;charset=utf-8" }
+    await new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", ENDPOINT, true);
+      xhr.setRequestHeader("Content-Type", "text/plain;charset=utf-8");
+      xhr.onload = () => resolve();
+      xhr.onerror = () => reject(new Error("network error"));
+      xhr.send(JSON.stringify(payload));
     });
     status.textContent = "Отправлено успешно!";
     status.className = "ok";
