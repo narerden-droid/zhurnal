@@ -82,16 +82,12 @@ button{cursor:pointer;border:none;border-radius:8px;font-size:14px;padding:10px 
 
   <button id="submitBtn">Отправить</button>
   <div id="status"></div>
-
-  <a href="https://docs.google.com/spreadsheets/d/1E_JFspD-z1PuO-n0uoop2S7zvtYGp9kx_iUTddt7DaM/edit?gid=0#gid=0" target="_blank" rel="noopener" style="display:block;text-align:center;margin-top:12px;color:var(--accent);font-size:14px;text-decoration:none;border:1px solid var(--border);border-radius:8px;padding:10px">
-    Отчёт — Журнал отсутствия
-  </a>
 </div>
 
 <script>
 const canvas = document.getElementById('sig');
 function resize(){ const r=canvas.getBoundingClientRect(); canvas.width=r.width*2; canvas.height=r.height*2; canvas.getContext('2d').scale(2,2); }
-resize(); window.addEventListener('resize', resize);
+resize();
 const pad = new SignaturePad(canvas, {backgroundColor:'#fff'});
 document.getElementById('clearSig').onclick = () => pad.clear();
 
